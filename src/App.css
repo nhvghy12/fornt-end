@@ -52,6 +52,20 @@
     font: 1em Sans-serif;
     font-weight: bold;
 }
+.ant-radio-checked .ant-radio-inner{
+    border-color: red !important ;
+  }
+  
+  .ant-radio-checked .ant-radio-inner:after{
+    background-color: red !important;
+  }
+  
+  .ant-radio:hover .ant-radio-inner {
+    border-color: red !important;
+  }
+  .ant-radio-checked .ant-radio-inner:focus{
+    border-color: red !important;
+  }
 
 
 /**/

@@ -9,6 +9,16 @@
 .buttonSave{
     background-color: #cf2338 !important;
     color: aliceblue !important;
-    border-radius: 8px !important;
+    border-radius: 4px !important;
     border-color: aliceblue !important;
+}
+.buttonCancle{
+    display: "inline-block" ;
+    color: #a3a8ad !important;
+    border-radius: 4px !important;
+    border: 2px solid #a3a8ad !important;
+}
+.inputForm{
+    border-radius: 4px !important;
+    border: 2px solid #a3a8ad !important;
 }

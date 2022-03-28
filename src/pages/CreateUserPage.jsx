@@ -17,16 +17,23 @@ import "./CreateUserPage.css";
 
 export function CreateUserPage() {
   const { Option } = Select;
+  const formItemLayout = {
+    labelCol: {
+      span: 4,
+    },
+    wrapperCol: {
+      span: 18,
+      offset: 1
+    },
+  };
   const onFinish = (fieldsValue) => {
     const values = {
       ...fieldsValue,
-      'DateOfBirth': fieldsValue['DateOfBirth'].format('DD-MM-YYYY'),
-      'JoinedDate': fieldsValue['JoinedDate'].format('DD-MM-YYYY'),
-    }
+      DateOfBirth: fieldsValue["DateOfBirth"].format("DD-MM-YYYY"),
+      JoinedDate: fieldsValue["JoinedDate"].format("DD-MM-YYYY"),
+    };
     console.log("Received fieldsValue of form: ", values);
   };
-
-  const [value, setValue] = React.useState(1);
   return (
     <Row>
       <Col span={12} offset={6}>
@@ -38,24 +45,25 @@ export function CreateUserPage() {
             style={{ marginTop: "10px", marginLeft: "5px", display: "block" }}
           >
             {/* Form */}
-            <Form name="complex-form" onFinish={onFinish}>
-              <Form.Item label="FirstName" style={{ marginBottom: 0 }}>
-                {/* <Form.Item label="FirstName" style={{display:"inline-block",marginBottom: 0 }}></Form.Item> */}
+            <Form name="complex-form" onFinish={onFinish} {...formItemLayout} labelAlign="left" >
+
+              <Form.Item label="FirstName" style={{ marginBottom: 0 }} >
                 <Form.Item
                   name="Fistname"
                   rules={[{ required: true }]}
                   style={{ display: "block" }}
                 >
-                  <Input />
+                  <Input className="inputForm" />
                 </Form.Item>
               </Form.Item>
+
               <Form.Item label="LastName" style={{ marginBottom: 0 }}>
                 <Form.Item
                   name="Lastname"
                   rules={[{ required: true }]}
                   style={{ display: "block" }}
                 >
-                  <Input />
+                  <Input className="inputForm" />
                 </Form.Item>
               </Form.Item>
               <Form.Item label="Date of Birth" style={{ marginBottom: 0 }}>
@@ -68,15 +76,17 @@ export function CreateUserPage() {
                     style={{ display: "block" }}
                     format="DD-MM-YYYY"
                     placeholder=""
-
+                    className="inputForm"
                   />
                 </Form.Item>
               </Form.Item>
-              <Form.Item label="Gender">
-                <Radio.Group value={value}>
-                  <Radio value={1}>Female</Radio>
-                  <Radio value={2}>Male</Radio>
-                </Radio.Group>
+              <Form.Item label="Gender" style={{ marginBottom: 0 }}>
+                <Form.Item name="Gender" rules={[{ required: true }]}>
+                  <Radio.Group>
+                    <Radio value="Female">Female</Radio>
+                    <Radio value="Male">Male</Radio>
+                  </Radio.Group>
+                </Form.Item>
               </Form.Item>
               <Form.Item label="Joined Date" style={{ marginBottom: 0 }}>
                 <Form.Item
@@ -88,6 +98,7 @@ export function CreateUserPage() {
                     style={{ display: "block" }}
                     format="DD-MM-YYYY"
                     placeholder=""
+                    className="inputForm"
                   />
                 </Form.Item>
               </Form.Item>
@@ -99,6 +110,7 @@ export function CreateUserPage() {
                 >
                   <Select
                     showSearch
+                    className="inputForm"
                     style={{ display: "block" }}
                     optionFilterProp="children"
                     filterOption={(input, option) =>
@@ -120,15 +132,13 @@ export function CreateUserPage() {
 
               <Form.Item label=" " colon={false}>
                 <Row>
-                  <Col span={3} offset={12}>
-                    <Button  htmlType="submit" className="buttonSave">
+                  <Col span={3} offset={10}>
+                    <Button htmlType="submit" className="buttonSave">
                       Save
                     </Button>
                   </Col>
                   <Col span={3} offset={6}>
-                    <Button style={{ display: "inline-block" }}>
-                      Cancel
-                    </Button>
+                    <Button className="buttonCancle">Cancel</Button>
                   </Col>
                 </Row>
               </Form.Item>
