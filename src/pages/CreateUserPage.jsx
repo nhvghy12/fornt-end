@@ -17,16 +17,16 @@ import "./CreateUserPage.css";
 
 export function CreateUserPage() {
   const { Option } = Select;
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const onFinish = (fieldsValue) => {
+    const values = {
+      ...fieldsValue,
+      'DateOfBirth': fieldsValue['DateOfBirth'].format('DD-MM-YYYY'),
+      'JoinedDate': fieldsValue['JoinedDate'].format('DD-MM-YYYY'),
+    }
+    console.log("Received fieldsValue of form: ", values);
   };
 
   const [value, setValue] = React.useState(1);
-
-  const onChangeRadio = (e) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
-  };
   return (
     <Row>
       <Col span={12} offset={6}>
@@ -40,6 +40,7 @@ export function CreateUserPage() {
             {/* Form */}
             <Form name="complex-form" onFinish={onFinish}>
               <Form.Item label="FirstName" style={{ marginBottom: 0 }}>
+                {/* <Form.Item label="FirstName" style={{display:"inline-block",marginBottom: 0 }}></Form.Item> */}
                 <Form.Item
                   name="Fistname"
                   rules={[{ required: true }]}
@@ -67,11 +68,12 @@ export function CreateUserPage() {
                     style={{ display: "block" }}
                     format="DD-MM-YYYY"
                     placeholder=""
+
                   />
                 </Form.Item>
               </Form.Item>
               <Form.Item label="Gender">
-                <Radio.Group onChange={onChangeRadio} value={value}>
+                <Radio.Group value={value}>
                   <Radio value={1}>Female</Radio>
                   <Radio value={2}>Male</Radio>
                 </Radio.Group>
@@ -80,7 +82,7 @@ export function CreateUserPage() {
                 <Form.Item
                   name="JoinedDate"
                   rules={[{ required: true }]}
-                  style={{ display: "block" }}
+                  style={{ display: "block", marginLeft: "" }}
                 >
                   <DatePicker
                     style={{ display: "block" }}
@@ -110,20 +112,25 @@ export function CreateUserPage() {
                         .localeCompare(optionB.children.toLowerCase())
                     }
                   >
-                    <Option value="1">Saff</Option>
-                    <Option value="2">Admin</Option>
+                    <Option value="Saff">Saff</Option>
+                    <Option value="Admin">Admin</Option>
                   </Select>
                 </Form.Item>
               </Form.Item>
 
               <Form.Item label=" " colon={false}>
-                <Col justify="center">
-                  <Button type="primary" htmlType="submit" danger>
-                    Save
-                  </Button>
-                </Col>
-
-                <Button justify="end">Cancel</Button>
+                <Row>
+                  <Col span={3} offset={12}>
+                    <Button  htmlType="submit" className="buttonSave">
+                      Save
+                    </Button>
+                  </Col>
+                  <Col span={3} offset={6}>
+                    <Button style={{ display: "inline-block" }}>
+                      Cancel
+                    </Button>
+                  </Col>
+                </Row>
               </Form.Item>
             </Form>
           </Row>

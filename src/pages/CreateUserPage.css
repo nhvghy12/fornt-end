@@ -6,3 +6,9 @@
     font-weight: bold;
     color: #cf2338;
 }
+.buttonSave{
+    background-color: #cf2338 !important;
+    color: aliceblue !important;
+    border-radius: 8px !important;
+    border-color: aliceblue !important;
+}
